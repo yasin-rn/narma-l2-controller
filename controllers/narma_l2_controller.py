@@ -134,6 +134,26 @@ class NarmaL2Controller:
         if abs(temp_diff) < 0.1:
             return self.pwm_buffer[-1] * 100.0  # Normalize edilmiş değeri orijinal ölçeğe dönüştür
         
+        # Sistemin çalışma modunu belirle (ısıtma veya soğutma)
+        # Veri setindeki ilişkiye göre, PWM değeri arttıkça sıcaklık düşüyor (soğutma modu)
+        is_cooling_mode = True
+        
+        # Eğer hedef sıcaklık, mevcut sıcaklıktan düşükse ve soğutma modundaysak
+        # veya hedef sıcaklık, mevcut sıcaklıktan yüksekse ve ısıtma modundaysak
+        # doğrudan PWM değerini ayarla
+        if (temp_diff < 0 and is_cooling_mode) or (temp_diff > 0 and not is_cooling_mode):
+            # Sıcaklık farkına göre PWM değerini hesapla
+            # Fark ne kadar büyükse, PWM değeri o kadar yüksek olmalı
+            pwm_value = min(max(abs(temp_diff) * 10.0, self.min_pwm), self.max_pwm)
+            return pwm_value
+        else:
+            # Aksi takdirde, PWM değerini minimumda tut
+            return self.min_pwm
+        
+        # Aşağıdaki kod, tahmin modeli kullanarak PWM değerini hesaplar
+        # Ancak veri setindeki ilişki nedeniyle doğru çalışmıyor
+        # Bu nedenle, yukarıdaki doğrudan hesaplama yöntemini kullanıyoruz
+        """
         # PWM değerlerini tara ve en iyi değeri bul
         best_pwm = None
         min_error = float('inf')
@@ -151,6 +171,7 @@ class NarmaL2Controller:
                 best_pwm = pwm
         
         return best_pwm
+        """
     
     def control_step(self, target_temp, current_temp, machine_control=None):
         """
