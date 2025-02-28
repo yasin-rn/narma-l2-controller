@@ -184,10 +184,10 @@ class TemperatureDataProcessor:
         plt.legend()
         
         plt.tight_layout()
-        plt.savefig('./data/temperature_pwm_plot.png')
+        plt.savefig('temperature_pwm_plot.png')
         plt.close()
         
-        print("Grafik kaydedildi: ./data/temperature_pwm_plot.png")
+        print("Grafik kaydedildi: temperature_pwm_plot.png")
 
 
 class TemperatureDataset(Dataset):

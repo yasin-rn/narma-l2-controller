@@ -5,7 +5,7 @@ import torch
 
 def main():
     # Veri işleme sınıfını oluştur
-    data_processor = TemperatureDataProcessor('./data/tempdata.csv', input_window=10, output_window=1)
+    data_processor = TemperatureDataProcessor('tempdata.csv', input_window=10, output_window=1)
     
     # Verileri yükle ve ön işleme tabi tut
     data_processor.load_data()

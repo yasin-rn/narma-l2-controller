@@ -6,14 +6,14 @@ import numpy as np
 
 def main():
     # Veri işleme sınıfını oluştur
-    data_processor = TemperatureDataProcessor('./data/tempdata.csv', input_window=10, output_window=1, sampling_time=0.2)
+    data_processor = TemperatureDataProcessor('tempdata.csv', input_window=10, output_window=1, sampling_time=0.2)
     
     # Verileri yükle ve ön işleme tabi tut
     data_processor.load_data()
     data_processor.preprocess_data()
     
     # NARMA-L2 kontrolcüsünü oluştur
-    controller = NarmaL2Controller('./data/narma_l2_model.pth', data_processor)
+    controller = NarmaL2Controller('narma_l2_model.pth', data_processor)
     
     # Kontrol sistemini simüle et
     target_temp = 30.0  # Hedef sıcaklık
@@ -34,7 +34,7 @@ def main():
         actual_temp=temp_values,
         pwm_values=pwm_values,
         time_values=time_values,
-        save_path='./data/control_simulation.png'
+        save_path='control_simulation.png'
     )
     
     print("Test tamamlandı.")

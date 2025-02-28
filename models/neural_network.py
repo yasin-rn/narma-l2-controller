@@ -204,7 +204,7 @@ class NarmaL2Trainer:
                 best_val_loss = val_loss
                 early_stop_counter = 0
                 # En iyi modeli kaydet
-                torch.save(self.model.state_dict(), './data/best_model.pth')
+                torch.save(self.model.state_dict(), 'best_model.pth')
             else:
                 early_stop_counter += 1
                 if early_stop_counter >= patience:
@@ -216,7 +216,7 @@ class NarmaL2Trainer:
         print(f"Eğitim tamamlandı. Toplam süre: {total_time:.2f} saniye")
         
         # En iyi modeli yükle
-        self.model.load_state_dict(torch.load('./data/best_model.pth'))
+        self.model.load_state_dict(torch.load('best_model.pth'))
         
         return self.train_losses, self.val_losses
     
@@ -295,7 +295,7 @@ class NarmaL2Trainer:
         
         return outputs
     
-    def save_model(self, path='./data/narma_l2_model.pth'):
+    def save_model(self, path='narma_l2_model.pth'):
         """
         Modeli kaydeder.
         
@@ -313,7 +313,7 @@ class NarmaL2Trainer:
         print(f"Model kaydedildi: {path}")
     
     @staticmethod
-    def load_model(path='./data/narma_l2_model.pth', device=None):
+    def load_model(path='narma_l2_model.pth', device=None):
         """
         Kaydedilmiş modeli yükler.
         

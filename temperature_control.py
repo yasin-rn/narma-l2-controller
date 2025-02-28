@@ -358,7 +358,7 @@ class TemperatureControl:
         
         return time_values, temp_values, pwm_values
     
-    def plot_results(self, time_values, temp_values, pwm_values, target_temp, save_path='./data/control_results.png'):
+    def plot_results(self, time_values, temp_values, pwm_values, target_temp, save_path='control_results.png'):
         """
         Kontrol sonuçlarını görselleştirir.
         

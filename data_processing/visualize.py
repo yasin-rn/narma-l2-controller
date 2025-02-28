@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_training_history(train_losses, val_losses, save_path='./data/training_history.png'):
+def plot_training_history(train_losses, val_losses, save_path='training_history.png'):
     """
     Eğitim geçmişini görselleştirir.
     
@@ -22,7 +22,7 @@ def plot_training_history(train_losses, val_losses, save_path='./data/training_h
     plt.close()
     print(f"Eğitim geçmişi grafiği kaydedildi: {save_path}")
 
-def plot_predictions(y_true, y_pred, time_values=None, save_path='./data/predictions.png'):
+def plot_predictions(y_true, y_pred, time_values=None, save_path='predictions.png'):
     """
     Gerçek ve tahmin edilen değerleri görselleştirir.
     
@@ -48,7 +48,7 @@ def plot_predictions(y_true, y_pred, time_values=None, save_path='./data/predict
     plt.close()
     print(f"Tahmin grafiği kaydedildi: {save_path}")
 
-def plot_control_performance(target_temp, actual_temp, pwm_values, time_values=None, save_path='./data/control_performance.png'):
+def plot_control_performance(target_temp, actual_temp, pwm_values, time_values=None, save_path='control_performance.png'):
     """
     Kontrol performansını görselleştirir.
     
