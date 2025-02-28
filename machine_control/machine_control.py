@@ -90,7 +90,10 @@ class MachineControl:
             return False
         
         try:
-            self.pwm_node.set_value(pwm_value)
+            # PWM değerini 'single' (float32) veri türüne dönüştür
+            from opcua import ua
+            dv = ua.DataValue(ua.Variant(float(pwm_value), ua.VariantType.Float))
+            self.pwm_node.set_value(dv)
             return True
         except Exception as e:
             print(f"PWM ayarlama hatası: {e}")
